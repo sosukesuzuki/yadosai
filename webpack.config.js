@@ -18,9 +18,6 @@ module.exports = {
   mode: MODE,
   devtool: DEV ? "inline-source-map" : "source-map",
   resolve: {
-    alias: {
-      fs: __dirname + "/src/lib/fs.ts"
-    },
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
   devServer: {

@@ -6,6 +6,7 @@ import { createStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useNavigation } from "react-navi";
+import useIsRegisterd from "../lib/hooks/useIsRegisterd";
 
 const styles = createStyles({
   root: {
@@ -22,6 +23,7 @@ type Props = WithStyles<typeof styles>;
 
 const Header: React.FC<Props> = ({ classes }) => {
   const navigation = useNavigation();
+  const isRegisterd = useIsRegisterd();
   return (
     <AppBar className={classes.root}>
       <Toolbar>
@@ -35,15 +37,17 @@ const Header: React.FC<Props> = ({ classes }) => {
         >
           メロンパンアイス
         </Typography>
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => {
-            navigation.navigate("/register");
-          }}
-        >
-          登録
-        </Button>
+        {!isRegisterd && (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => {
+              navigation.navigate("/register");
+            }}
+          >
+            登録
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );

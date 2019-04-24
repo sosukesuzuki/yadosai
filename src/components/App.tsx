@@ -1,10 +1,12 @@
 import React from "react";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { mount, route } from "navi";
 import { Router, View } from "react-navi";
 import Header from "./Header";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Sale from "./pages/Sale";
+import { blue } from "@material-ui/core/colors";
 
 const routes = mount({
   "/": route({
@@ -20,18 +22,26 @@ const routes = mount({
   })
 });
 
+const theme = createMuiTheme({
+  palette: {
+    primary: blue
+  }
+});
+
 const App: React.FC = () => {
   return (
-    <Router routes={routes}>
-      <Header />
-      <div
-        style={{
-          marginTop: "85px"
-        }}
-      >
-        <View />
-      </div>
-    </Router>
+    <MuiThemeProvider theme={theme}>
+      <Router routes={routes}>
+        <Header />
+        <div
+          style={{
+            marginTop: "85px"
+          }}
+        >
+          <View />
+        </div>
+      </Router>
+    </MuiThemeProvider>
   );
 };
 

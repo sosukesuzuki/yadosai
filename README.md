@@ -1,1 +1,3 @@
-# coins3 クラやどかり祭売上管理アプリ
+# メロンパンアイス
+
+![Logo](./assets/logo.jpg)

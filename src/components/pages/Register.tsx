@@ -50,12 +50,14 @@ const Register: React.FC<Props> = ({ classes }) => {
           setName((e.target as any).value);
         }}
         className={classes.textField}
+        disabled={isConfirmed}
       />
       <Button
         variant="contained"
         size="large"
         className={classes.button}
         onClick={handleClickButton}
+        disabled={isConfirmed}
       >
         登録
       </Button>

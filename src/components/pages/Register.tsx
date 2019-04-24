@@ -24,15 +24,30 @@ type Props = WithStyles<typeof styles>;
 const Register: React.FC<Props> = ({ classes }) => {
   const [name, setName] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
   const navigation = useNavigation();
 
   function handleClickButton() {
+    const isValid = validate(name);
+    if (!isValid) {
+      setIsInvalid(true);
+      return;
+    }
+
     setNameToLocalStorage(name);
     setIsConfirmed(true);
     debounce(navigateToHome, 2100)();
 
     function navigateToHome() {
       navigation.navigate("/");
+    }
+
+    function validate(value: string): boolean {
+      if (value.split(" ").length > 1) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
@@ -42,11 +57,17 @@ const Register: React.FC<Props> = ({ classes }) => {
         お名前をフルネームで、名字と名前の間に半角スペースを空けて入力してください。
       </Typography>
       <Typography>（例： 田中 太郎）</Typography>
+      {isInvalid && (
+        <Typography className={classes.message} color="error">
+          名前が不正です。
+        </Typography>
+      )}
       <TextField
         label="お名前"
         value={name}
         fullWidth
         onChange={e => {
+          if (isInvalid) setIsInvalid(false);
           setName((e.target as any).value);
         }}
         className={classes.textField}
@@ -64,7 +85,7 @@ const Register: React.FC<Props> = ({ classes }) => {
       {isConfirmed && (
         <div className={classes.message}>
           <Typography>
-            登録ありがとうございます!頑張って売りましょう!
+            登録ありがとうございます！頑張って売りましょう！
           </Typography>
           <Typography>トップページに戻ります。</Typography>
         </div>

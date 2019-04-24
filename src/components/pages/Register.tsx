@@ -3,7 +3,7 @@ import { createStyles, withStyles, WithStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { setName as setNameToLocalStorage } from "../../lib/localstorage";
+import { setName as setNameToLocalStorage } from "../../lib/localStorage";
 import { useNavigation } from "react-navi";
 import debounce from "lodash.debounce";
 

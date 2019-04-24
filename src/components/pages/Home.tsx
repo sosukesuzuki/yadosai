@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core";
-import { getIsRegisterd } from "../../lib/localstorage";
+import { getIsRegisterd } from "../../lib/localStorage";
 
 const styles = createStyles({
   head5: {

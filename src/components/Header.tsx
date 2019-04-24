@@ -6,7 +6,7 @@ import { createStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useNavigation } from "react-navi";
-import { getIsRegisterd } from "../lib/localstorage";
+import { getIsRegisterd } from "../lib/localStorage";
 
 const styles = createStyles({
   root: {

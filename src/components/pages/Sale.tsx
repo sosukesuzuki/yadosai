@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import useMelonpanIceStock from "../../lib/hooks/useMelonpanIceStock";
+import sellMelonpanIce from "../../lib/sellMelonpanIce";
 
 const Sale: React.FC = () => {
   const stock = useMelonpanIceStock();
@@ -13,7 +14,15 @@ const Sale: React.FC = () => {
       {!isLoading && (
         <>
           <Typography variant="h5">残量: {stock}個</Typography>
-          <Button fullWidth variant="contained" size="large" color="primary">
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => {
+              sellMelonpanIce();
+            }}
+          >
             売った
           </Button>
         </>

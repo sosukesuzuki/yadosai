@@ -9,4 +9,8 @@ firebase.initializeApp({
   projectId
 });
 
-export default firebase.firestore();
+const db = firebase.firestore();
+
+export const melonpanice = db.collection("food").doc("melonpanice");
+
+export default db;

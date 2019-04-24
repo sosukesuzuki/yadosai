@@ -32,7 +32,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "navi": "^0.12.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-navi": "^0.12.6"
   }
 }

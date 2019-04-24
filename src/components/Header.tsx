@@ -18,7 +18,7 @@ type Props = WithStyles<typeof styles>;
 const Header: React.FC<Props> = ({ classes }) => (
   <AppBar className={classes.root}>
     <Typography variant="h6" color="inherit">
-      メロンパンアイスを売りたい!!
+      メロンパンアイス
     </Typography>
   </AppBar>
 );

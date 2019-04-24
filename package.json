@@ -13,6 +13,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
     "@types/material-ui": "^0.21.6",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "lodash.debounce": "^4.0.8",
     "navi": "^0.12.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

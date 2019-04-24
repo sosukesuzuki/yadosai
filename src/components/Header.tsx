@@ -5,6 +5,7 @@ import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import { createStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
+import { useNavigation } from "react-navi";
 
 const styles = createStyles({
   root: {
@@ -19,17 +20,33 @@ const styles = createStyles({
 
 type Props = WithStyles<typeof styles>;
 
-const Header: React.FC<Props> = ({ classes }) => (
-  <AppBar className={classes.root}>
-    <Toolbar>
-      <Typography variant="h6" color="inherit" className={classes.grow}>
-        メロンパンアイス
-      </Typography>
-      <Button size="small" variant="contained">
-        登録
-      </Button>
-    </Toolbar>
-  </AppBar>
-);
+const Header: React.FC<Props> = ({ classes }) => {
+  const navigation = useNavigation();
+  return (
+    <AppBar className={classes.root}>
+      <Toolbar>
+        <Typography
+          variant="h6"
+          color="inherit"
+          className={classes.grow}
+          onClick={() => {
+            navigation.navigate("/");
+          }}
+        >
+          メロンパンアイス
+        </Typography>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => {
+            navigation.navigate("/register");
+          }}
+        >
+          登録
+        </Button>
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default withStyles(styles)(Header);

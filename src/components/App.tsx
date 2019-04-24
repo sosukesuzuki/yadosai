@@ -16,7 +16,7 @@ const App: React.FC = () => {
       <Header />
       <div
         style={{
-          marginTop: "60px"
+          marginTop: "85px"
         }}
       >
         <View />

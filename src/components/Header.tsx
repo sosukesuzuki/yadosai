@@ -6,7 +6,7 @@ import { createStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useNavigation } from "react-navi";
-import useIsRegisterd from "../lib/hooks/useIsRegisterd";
+import { getIsRegisterd } from "../lib/localstorage";
 
 const styles = createStyles({
   root: {
@@ -23,7 +23,7 @@ type Props = WithStyles<typeof styles>;
 
 const Header: React.FC<Props> = ({ classes }) => {
   const navigation = useNavigation();
-  const isRegisterd = useIsRegisterd();
+  const isRegisterd = getIsRegisterd();
   return (
     <AppBar className={classes.root}>
       <Toolbar>

@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core";
-import useIsRegisterd from "../../lib/hooks/useIsRegisterd";
+import { getIsRegisterd } from "../../lib/localstorage";
 
 const styles = createStyles({
   head5: {
@@ -13,7 +13,7 @@ const styles = createStyles({
 type Props = WithStyles<typeof styles>;
 
 const Home: React.FC<Props> = ({ classes }) => {
-  const isRegisterd = useIsRegisterd();
+  const isRegisterd = getIsRegisterd();
   return (
     <>
       <Typography>coins19:3クラスのやどかり祭の売上管理アプリです。</Typography>

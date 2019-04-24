@@ -37,7 +37,17 @@ const Header: React.FC<Props> = ({ classes }) => {
         >
           メロンパンアイス
         </Typography>
-        {!isRegisterd && (
+        {isRegisterd ? (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => {
+              navigation.navigate("/sale");
+            }}
+          >
+            売るぞ
+          </Button>
+        ) : (
           <Button
             variant="contained"
             size="small"

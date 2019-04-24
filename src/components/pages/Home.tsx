@@ -24,9 +24,13 @@ const Home: React.FC<Props> = ({ classes }) => {
       <Typography variant="h5" className={classes.head5}>
         使い方
       </Typography>
-      {!isRegisterd && (
+      {isRegisterd ? (
         <Typography>
-          まず、お名前の登録をお願いします。右上の「登録」ボタンをクリックし、ページの指示に従ってお名前を登録してください。
+          登録ありがとうございます。さあ、右上の「売るぞ」をタップして売るぞ。
+        </Typography>
+      ) : (
+        <Typography>
+          まず、お名前の登録をお願いします。右上の「登録」ボタンをタップし、ページの指示に従ってお名前を登録してください。
         </Typography>
       )}
     </>

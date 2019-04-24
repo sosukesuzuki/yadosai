@@ -4,6 +4,7 @@ import { Router, View } from "react-navi";
 import Header from "./Header";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Sale from "./pages/Sale";
 
 const routes = mount({
   "/": route({
@@ -12,6 +13,10 @@ const routes = mount({
   "/register": route({
     title: "お名前登録",
     view: <Register />
+  }),
+  "/sale": route({
+    title: "メロンパンアイスを売るぞ",
+    view: <Sale />
   })
 });
 

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core";
-import { getIsRegisterd } from "../../lib/localStorage";
+import useUser from "../../lib/hooks/useUser";
 
 const styles = createStyles({
   head5: {
@@ -13,7 +13,8 @@ const styles = createStyles({
 type Props = WithStyles<typeof styles>;
 
 const Home: React.FC<Props> = ({ classes }) => {
-  const isRegisterd = getIsRegisterd();
+  const user = useUser();
+  const isLoggedIn = useMemo(() => !!user, [user]);
 
   return (
     <>
@@ -25,7 +26,7 @@ const Home: React.FC<Props> = ({ classes }) => {
       <Typography variant="h5" className={classes.head5}>
         使い方
       </Typography>
-      {isRegisterd ? (
+      {isLoggedIn ? (
         <Typography>
           登録ありがとうございます。さあ、右上の「売るぞ」をタップして売るぞ。
         </Typography>

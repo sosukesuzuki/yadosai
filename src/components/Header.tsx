@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
@@ -6,7 +6,7 @@ import { createStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useNavigation } from "react-navi";
-import { getIsRegisterd } from "../lib/localStorage";
+import useUser from "../lib/hooks/useUser";
 
 const styles = createStyles({
   root: {
@@ -23,7 +23,9 @@ type Props = WithStyles<typeof styles>;
 
 const Header: React.FC<Props> = ({ classes }) => {
   const navigation = useNavigation();
-  const isRegisterd = getIsRegisterd();
+  const user = useUser();
+  const isLoggedIn = useMemo(() => !!user, [user]);
+
   return (
     <AppBar className={classes.root}>
       <Toolbar>
@@ -37,7 +39,7 @@ const Header: React.FC<Props> = ({ classes }) => {
         >
           メロンパンアイス
         </Typography>
-        {isRegisterd ? (
+        {isLoggedIn ? (
           <Button
             variant="contained"
             size="small"

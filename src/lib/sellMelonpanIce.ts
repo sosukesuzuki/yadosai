@@ -1,6 +1,5 @@
 import format from "date-fns/format";
 import db, { melonpanice, salesHisory } from "./firebase/db";
-import { getName } from "./localStorage";
 
 export default async function sellMelonpanIce(): Promise<void> {
   try {
@@ -18,7 +17,6 @@ export default async function sellMelonpanIce(): Promise<void> {
   }
 
   await salesHisory.add({
-    name: getName(),
     createdAt: format(new Date(), "YYYY/MM/DD HH:MM")
   });
 }

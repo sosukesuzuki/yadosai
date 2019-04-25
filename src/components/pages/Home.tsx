@@ -1,20 +1,14 @@
 import React, { useMemo } from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import { createStyles, withStyles, WithStyles } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import useUser from "../../lib/hooks/useUser";
+import { useNavigation } from "react-navi";
 
-const styles = createStyles({
-  head5: {
-    marginTop: "15px"
-  }
-});
-
-type Props = WithStyles<typeof styles>;
-
-const Home: React.FC<Props> = ({ classes }) => {
+const Home: React.FC = () => {
   const user = useUser();
   const isLoggedIn = useMemo(() => !!user, [user]);
+  const navigation = useNavigation();
 
   return (
     <>
@@ -23,18 +17,41 @@ const Home: React.FC<Props> = ({ classes }) => {
         開発は<Link href="https://twitter.com/__sosukesuzuki">鈴木颯介</Link>
         がしているので、要望や文句があるときはDMとかしてください。
       </Typography>
-      <Typography variant="h5" className={classes.head5}>
-        使い方
-      </Typography>
       {isLoggedIn ? (
-        <Typography>さあ、右上のアイコンをタップして売るぞ。</Typography>
+        <>
+          <Typography>たくさん売っちゃってください。</Typography>
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => {
+              navigation.navigate("/sale");
+            }}
+          >
+            販売ページへ
+          </Button>
+        </>
       ) : (
-        <Typography>
-          まず、アカウントをお持ちの方はログインをお願いします。持っていない方はアカウントを作成してください。
-        </Typography>
+        <>
+          <Typography>
+            まず、アカウントをお持ちの方はログインをお願いします。持っていない方はアカウントを作成してください。
+          </Typography>
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => {
+              navigation.navigate("/sale");
+            }}
+          >
+            アカウント作成
+          </Button>
+        </>
       )}
     </>
   );
 };
 
-export default withStyles(styles)(Home);
+export default Home;

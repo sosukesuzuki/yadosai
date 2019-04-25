@@ -13,6 +13,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
+    "@material-ui/icons": "^3.0.2",
     "@types/firebase": "^3.2.1",
     "@types/lodash.debounce": "^4.0.6",
     "@types/material-ui": "^0.21.6",

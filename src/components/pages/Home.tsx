@@ -27,12 +27,10 @@ const Home: React.FC<Props> = ({ classes }) => {
         使い方
       </Typography>
       {isLoggedIn ? (
-        <Typography>
-          登録ありがとうございます。さあ、右上の「売るぞ」をタップして売るぞ。
-        </Typography>
+        <Typography>さあ、右上のアイコンをタップして売るぞ。</Typography>
       ) : (
         <Typography>
-          まず、お名前の登録をお願いします。右上の「登録」ボタンをタップし、ページの指示に従ってお名前を登録してください。
+          まず、アカウントをお持ちの方はログインをお願いします。持っていない方はアカウントを作成してください。
         </Typography>
       )}
     </>

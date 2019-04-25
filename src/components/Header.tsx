@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import { createStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import AttachMoney from "@material-ui/icons/AttachMoney";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useNavigation } from "react-navi";
 import useUser from "../lib/hooks/useUser";
@@ -40,15 +42,14 @@ const Header: React.FC<Props> = ({ classes }) => {
           メロンパンアイス
         </Typography>
         {isLoggedIn ? (
-          <Button
-            variant="contained"
-            size="small"
+          <IconButton
+            color="inherit"
             onClick={() => {
               navigation.navigate("/sale");
             }}
           >
-            売るぞ
-          </Button>
+            <AttachMoney />
+          </IconButton>
         ) : (
           <Button
             variant="contained"

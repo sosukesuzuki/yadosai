@@ -48,6 +48,7 @@ const Home: React.FC = () => {
           >
             アカウント作成
           </Button>
+          {/* TODO: ログイン機能 */}
         </>
       )}
     </>

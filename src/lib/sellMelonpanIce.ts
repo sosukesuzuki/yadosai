@@ -16,6 +16,7 @@ export default async function sellMelonpanIce(): Promise<void> {
     throw error;
   }
 
+  // TODO: uidを一緒におくる
   await salesHisory.add({
     createdAt: format(new Date(), "YYYY/MM/DD HH:MM")
   });

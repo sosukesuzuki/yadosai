@@ -25,6 +25,9 @@ const Header: React.FC<Props> = ({ classes }) => {
   return (
     <AppBar className={classes.root}>
       <Toolbar>
+        {/* TODO: 横からメニューバー出てくる
+          ログインしてないときは「ログイン」と「アカウント作成」
+          ログイン済みのときは「プロフィール」と「ログアウト」 */}
         <Typography
           variant="h6"
           color="inherit"

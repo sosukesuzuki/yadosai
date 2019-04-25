@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { melonpanice } from "../db";
+import { melonpanice } from "../firebase/db";
 
 export default function useMelonpanIceStock() {
   const [stock, setStock] = useState<number | null>(null);

@@ -14,6 +14,7 @@ type Props = WithStyles<typeof styles>;
 
 const Home: React.FC<Props> = ({ classes }) => {
   const isRegisterd = getIsRegisterd();
+
   return (
     <>
       <Typography>coins19:3クラスのやどかり祭の売上管理アプリです。</Typography>

@@ -1,5 +1,5 @@
 import format from "date-fns/format";
-import db, { melonpanice, salesHisory } from "./db";
+import db, { melonpanice, salesHisory } from "./firebase/db";
 import { getName } from "./localStorage";
 
 export default async function sellMelonpanIce(): Promise<void> {

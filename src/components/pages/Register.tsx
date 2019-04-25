@@ -3,9 +3,9 @@ import { createStyles, withStyles, WithStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { setName as setNameToLocalStorage } from "../../lib/localStorage";
 import { useNavigation } from "react-navi";
 import debounce from "lodash.debounce";
+import createUser from "../../lib/createUser";
 
 const styles = createStyles({
   textField: {
@@ -21,54 +21,78 @@ const styles = createStyles({
 
 type Props = WithStyles<typeof styles>;
 
+type State = {
+  displayName: string;
+  email: string;
+  password: string;
+};
+
 const Register: React.FC<Props> = ({ classes }) => {
-  const [name, setName] = useState("");
+  const [formState, setFormState] = useState<State>({
+    displayName: "",
+    email: "",
+    password: ""
+  });
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const [isInvalid, setIsInvalid] = useState(false);
   const navigation = useNavigation();
 
   function handleClickButton() {
-    const isValid = validate(name);
-    if (!isValid) {
-      setIsInvalid(true);
-      return;
-    }
-
-    setNameToLocalStorage(name);
     setIsConfirmed(true);
-    debounce(navigateToHome, 2100)();
 
-    function navigateToHome() {
-      navigation.navigate("/");
-    }
+    createUser({
+      displayName: formState.displayName,
+      email: formState.email,
+      password: formState.password
+    }).then(debounce(navigateToHome, 2000));
+  }
 
-    function validate(value: string): boolean {
-      if (value.split(" ").length > 1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+  function navigateToHome() {
+    navigation.navigate("/");
   }
 
   return (
     <>
       <Typography>
-        お名前をフルネームで、名字と名前の間に半角スペースを空けて入力してください。
+        お名前とメールアドレスとパスワードを入力して登録をお願いします。
       </Typography>
-      <Typography>（例： 田中 太郎）</Typography>
-      {isInvalid && (
-        <Typography className={classes.message} color="error">
-          名前が不正です。
-        </Typography>
-      )}
       <TextField
         label="お名前"
-        value={name}
+        value={formState.displayName}
         fullWidth
         onChange={e => {
-          if (isInvalid) setIsInvalid(false);
-          setName((e.target as any).value);
+          e.persist();
+          setFormState(state => ({
+            ...state,
+            displayName: (e.target as any).value
+          }));
+        }}
+        className={classes.textField}
+        disabled={isConfirmed}
+      />
+      <TextField
+        label="メールアドレス"
+        value={formState.email}
+        fullWidth
+        onChange={e => {
+          e.persist();
+          setFormState(state => ({
+            ...state,
+            email: (e.target as any).value
+          }));
+        }}
+        className={classes.textField}
+        disabled={isConfirmed}
+      />
+      <TextField
+        label="パスワード"
+        value={formState.password}
+        fullWidth
+        onChange={e => {
+          e.persist();
+          setFormState(state => ({
+            ...state,
+            password: (e.target as any).value
+          }));
         }}
         className={classes.textField}
         disabled={isConfirmed}

@@ -4,11 +4,21 @@ import Button from "@material-ui/core/Button";
 import useMelonpanIceStock from "../../lib/hooks/useMelonpanIceStock";
 import sellMelonpanIce from "../../lib/sellMelonpanIce";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { getIsRegisterd } from "../../lib/localstorage";
 
 const Sale: React.FC = () => {
   const stock = useMelonpanIceStock();
   const [isLoading, setIsLoading] = useState(false);
   const isStockNull = useMemo(() => stock === null, [stock]);
+  const isRegisterd = getIsRegisterd();
+
+  if (!isRegisterd) {
+    return (
+      <Typography variant="h5">
+        まず右上の「登録」ボタンから登録をお願いします!
+      </Typography>
+    );
+  }
 
   return (
     <>

@@ -3,6 +3,7 @@
     "target": "es5",
     "module": "esnext",
     "jsx": "react",
+    "lib": ["esnext"],
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

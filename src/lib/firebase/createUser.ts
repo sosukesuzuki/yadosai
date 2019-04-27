@@ -1,4 +1,4 @@
-import firebase from "./firebase/firebase";
+import firebase from "./firebase";
 
 type Params = {
   displayName: string;

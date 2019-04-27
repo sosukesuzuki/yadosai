@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useNavigation } from "react-navi";
 import debounce from "lodash.debounce";
-import createUser from "../../lib/createUser";
+import createUser from "../../lib/firebase/createUser";
 
 const styles = createStyles({
   textField: {

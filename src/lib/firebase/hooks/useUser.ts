@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import firebase from "../firebase/firebase";
+import firebase from "../firebase";
 import { User } from "firebase";
 
 export default function useUser(): User | null {

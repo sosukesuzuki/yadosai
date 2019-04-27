@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-import useUser from "../../lib/hooks/useUser";
+import useUser from "../../lib/firebase/hooks/useUser";
 import { useNavigation } from "react-navi";
 
 const Home: React.FC = () => {

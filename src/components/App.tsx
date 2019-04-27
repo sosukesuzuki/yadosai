@@ -7,18 +7,23 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Sale from "./pages/Sale";
 import { blue } from "@material-ui/core/colors";
+import Login from "./pages/Login";
 
 const routes = mount({
   "/": route({
     view: <Home />
   }),
   "/register": route({
-    title: "お名前登録",
+    title: "アカウント作成",
     view: <Register />
   }),
   "/sale": route({
     title: "メロンパンアイスを売るぞ",
     view: <Sale />
+  }),
+  "/login": route({
+    title: "ログイン",
+    view: <Login />
   })
 });
 

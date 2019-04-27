@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { useNavigation } from "react-navi";
 import debounce from "lodash.debounce";
-import createUser from "../../lib/firebase/createUser";
+import login from "../../lib/firebase/login";
 
 const styles = createStyles({
   textField: {
@@ -21,15 +21,13 @@ const styles = createStyles({
 
 type Props = WithStyles<typeof styles>;
 
-type State = {
-  displayName: string;
+type FormState = {
   email: string;
   password: string;
 };
 
-const Register: React.FC<Props> = ({ classes }) => {
-  const [formState, setFormState] = useState<State>({
-    displayName: "",
+const Login: React.FC<Props> = ({ classes }) => {
+  const [formState, setFormState] = useState<FormState>({
     email: "",
     password: ""
   });
@@ -39,8 +37,7 @@ const Register: React.FC<Props> = ({ classes }) => {
   function handleClickButton() {
     setIsConfirmed(true);
 
-    createUser({
-      displayName: formState.displayName,
+    login({
       email: formState.email,
       password: formState.password
     }).then(debounce(navigateToHome, 2000));
@@ -53,22 +50,8 @@ const Register: React.FC<Props> = ({ classes }) => {
   return (
     <>
       <Typography>
-        お名前とメールアドレスとパスワードを入力して登録をお願いします。
+        設定したメールアドレスとパスワードを使ってログインをしてください。
       </Typography>
-      <TextField
-        label="お名前"
-        value={formState.displayName}
-        fullWidth
-        onChange={e => {
-          e.persist();
-          setFormState(state => ({
-            ...state,
-            displayName: (e.target as any).value
-          }));
-        }}
-        className={classes.textField}
-        disabled={isConfirmed}
-      />
       <TextField
         label="メールアドレス"
         value={formState.email}
@@ -105,12 +88,12 @@ const Register: React.FC<Props> = ({ classes }) => {
         onClick={handleClickButton}
         disabled={isConfirmed}
       >
-        登録
+        ログイン
       </Button>
       {isConfirmed && (
         <div className={classes.message}>
           <Typography>
-            登録ありがとうございます！頑張って売りましょう！
+            ログイン完了です。さあメロンパンアイスを売りましょう！
           </Typography>
           <Typography>トップページに戻ります。</Typography>
         </div>
@@ -119,4 +102,4 @@ const Register: React.FC<Props> = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(Register);
+export default withStyles(styles)(Login);

@@ -38,17 +38,28 @@ const Home: React.FC = () => {
             まず、アカウントをお持ちの方はログインをお願いします。持っていない方はアカウントを作成してください。
           </Typography>
           <Button
+            style={{ margin: "10px 0" }}
             fullWidth
             variant="contained"
             size="large"
             color="primary"
             onClick={() => {
-              navigation.navigate("/sale");
+              navigation.navigate("/register");
             }}
           >
             アカウント作成
           </Button>
-          {/* TODO: ログイン機能 */}
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={() => {
+              navigation.navigate("/login");
+            }}
+          >
+            ログイン
+          </Button>
         </>
       )}
     </>

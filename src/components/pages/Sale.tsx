@@ -16,7 +16,7 @@ const Sale: React.FC = () => {
   if (!isLoggedIn) {
     return (
       <Typography variant="h5">
-        まず右上の「登録」ボタンから登録をお願いします!
+        まずメニューを開いて、ログインもしくはアカウント作成をお願いします。
       </Typography>
     );
   }

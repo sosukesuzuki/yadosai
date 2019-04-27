@@ -33,14 +33,20 @@ const Login: React.FC<Props> = ({ classes }) => {
   });
   const [isConfirmed, setIsConfirmed] = useState(false);
   const navigation = useNavigation();
+  const [errorMessage, setErrorMessage] = useState<null | string>(null);
 
   function handleClickButton() {
-    setIsConfirmed(true);
-
     login({
       email: formState.email,
       password: formState.password
-    }).then(debounce(navigateToHome, 2000));
+    })
+      .then(() => {
+        setIsConfirmed(true);
+        debounce(navigateToHome, 2000)();
+      })
+      .catch(err => {
+        setErrorMessage(err.message);
+      });
   }
 
   function navigateToHome() {
@@ -52,6 +58,9 @@ const Login: React.FC<Props> = ({ classes }) => {
       <Typography>
         設定したメールアドレスとパスワードを使ってログインをしてください。
       </Typography>
+      {errorMessage !== null && (
+        <Typography color="error">{errorMessage}</Typography>
+      )}
       <TextField
         label="メールアドレス"
         value={formState.email}

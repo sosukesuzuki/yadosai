@@ -35,15 +35,21 @@ const Register: React.FC<Props> = ({ classes }) => {
   });
   const [isConfirmed, setIsConfirmed] = useState(false);
   const navigation = useNavigation();
+  const [errorMessage, setErrorMessage] = useState<null | string>(null);
 
   function handleClickButton() {
-    setIsConfirmed(true);
-
     createUser({
       displayName: formState.displayName,
       email: formState.email,
       password: formState.password
-    }).then(debounce(navigateToHome, 2000));
+    })
+      .then(() => {
+        setIsConfirmed(true);
+        debounce(navigateToHome, 2000)();
+      })
+      .catch(err => {
+        setErrorMessage(err.message);
+      });
   }
 
   function navigateToHome() {
@@ -55,12 +61,16 @@ const Register: React.FC<Props> = ({ classes }) => {
       <Typography>
         お名前とメールアドレスとパスワードを入力して登録をお願いします。
       </Typography>
+      {errorMessage !== null && (
+        <Typography color="error">{errorMessage}</Typography>
+      )}
       <TextField
         label="お名前"
         value={formState.displayName}
         fullWidth
         onChange={e => {
           e.persist();
+          setErrorMessage(null);
           setFormState(state => ({
             ...state,
             displayName: (e.target as any).value
@@ -75,6 +85,7 @@ const Register: React.FC<Props> = ({ classes }) => {
         fullWidth
         onChange={e => {
           e.persist();
+          setErrorMessage(null);
           setFormState(state => ({
             ...state,
             email: (e.target as any).value

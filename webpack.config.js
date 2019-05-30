@@ -1,7 +1,8 @@
+const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const MODE = process.env.NODE_ENV || "development";
-const DEV = MODE == "development";
+const DEV = MODE === "development";
 
 const copyRules = [
   {
@@ -9,10 +10,24 @@ const copyRules = [
     to: __dirname + "/dist/index.html"
   },
   {
-    from: __dirname + "/assets/**",
+    from: __dirname + "/assets",
     to: __dirname + "/dist"
   }
 ];
+
+function createPlugins() {
+  const common = [new CopyPlugin(copyRules)];
+  return DEV
+    ? common.concat(new Dotenv())
+    : common.concat(
+        new webpack.EnvironmentPlugin([
+	  "FIREBASE_API_KEY",
+          "FIREBASE_AUTH_DOMAIN",
+          "FIREBASE_DATABASE_URL",
+          "FIREBASE_PROJECT_ID"
+	])
+      );
+}
 
 module.exports = {
   mode: MODE,
@@ -42,5 +57,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [new CopyPlugin(copyRules), new Dotenv()]
+  plugins: createPlugins()
 };
